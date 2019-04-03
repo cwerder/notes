@@ -6,10 +6,19 @@ import {MatSliderModule} from '@angular/material/slider';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
+import { SideNavComponent } from './sidenav/sidenav.component';
+import { MainComponent } from './main/main.component';
+import { NewNoteComponent } from './newnote/newnote.component';
+import { PastNoteComponent } from './pastnote/pastnote.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SideNavComponent,
+    MainComponent,
+    NewNoteComponent,
+    NewNoteComponent,
+    PastNoteComponent
   ],
   imports: [
     BrowserModule,
