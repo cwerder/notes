@@ -9,7 +9,10 @@ import { AppComponent } from './app.component';
 import { SideNavComponent } from './sidenav/sidenav.component';
 import { MainComponent } from './main/main.component';
 import { NewNoteComponent } from './newnote/newnote.component';
-import { PastNoteComponent } from './pastnote/pastnote.component'
+import { PastNoteComponent } from './pastnote/pastnote.component';
+import { NoteCardComponent } from './notecard/notecard.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NoteService } from './services/Note.service';
 
 @NgModule({
   declarations: [
@@ -18,16 +21,18 @@ import { PastNoteComponent } from './pastnote/pastnote.component'
     MainComponent,
     NewNoteComponent,
     NewNoteComponent,
-    PastNoteComponent
+    PastNoteComponent,
+    NoteCardComponent
   ],
   imports: [
     BrowserModule,
     MatSidenavModule,
     MatCheckboxModule,
     MatSliderModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [NoteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

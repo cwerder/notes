@@ -14,14 +14,15 @@ const notesSchema = new mongoose.Schema({
 	message: String
 });
 
-app.use(bodyParser.json())
+var corsOptions = {
+	origin: 'http://localhost:4200',
+	optionsSuccessStatus: 200 
+}
 
-// var corsOptions = {
-// 	origin: 'http://example.com',
-// 	optionsSuccessStatus: 200 
-// }
+app.use(bodyParser.json());
+app.use(cors(corsOptions));
 
-var db;
+// var db;
 
 var Note = mongoose.model("Notes", notesSchema);
 
@@ -30,41 +31,29 @@ mongoose.connect(conn, { useNewUrlParser: true }, async (err, database) => {
 		console.log('close connection')
 	}
 	db = database;
-	var doc;
-	// doc = await Note.find({});
-	// console.log('doc ' + doc);
-	doc = await Note.findOne({subject: "CJ"})
-	console.log('doc ' + doc)
 	
 	app.listen(8080, () => {
+		console.log('cray cray')
 		console.log('Server started. Connection to database established!')
 	})
 })
 
-// app.route('/notes/PastNotes').get((req, res) => {
-// 		res.send([{message: "hello"}, {message: "cj"}]);
-// })
-
-// app.route('/notes/PastNotes/:message').get((req, res) => {
-// 	const requestedPastNote = req.params['message']
-// 	res.send({message: requestedPastNote})
-// })
-
-app.get('/notes/PastNotes', function(req, res) {
-	res.send([{message: "hello"}, {message: "cj"}]);
+app.get('/notes/PastNotes', async function(req, res) {
+	let data = Note.find({})
+	data.then(result => {
+		res.send(result);
+	})
 })
 
 app.post("/notes/PastNotes", (req, res) => {
-	console.log('cray')
 	console.log(req.body)
 	var myData = new Note(req.body);
 	console.log(myData)
 	myData.save()
 		.then(item => {
 			console.log('item ' + item)
-			console.log('hola');
 			res.send(item);
-			db.close();
+			// db.close();
 		})
 		.catch(err => {
 			res.status(400).send("unable to save to database")
