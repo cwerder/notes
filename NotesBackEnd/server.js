@@ -22,18 +22,15 @@ var corsOptions = {
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
 
-// var db;
-
 var Note = mongoose.model("Notes", notesSchema);
 
-mongoose.connect(conn, { useNewUrlParser: true }, async (err, database) => {
+mongoose.connect(conn, { useNewUrlParser: true }, (err, database) => {
 	if (err) {
 		console.log('close connection')
 	}
 	db = database;
 	
 	app.listen(8080, () => {
-		console.log('cray cray')
 		console.log('Server started. Connection to database established!')
 	})
 })
@@ -53,7 +50,6 @@ app.post("/notes/PastNotes", (req, res) => {
 		.then(item => {
 			console.log('item ' + item)
 			res.send(item);
-			// db.close();
 		})
 		.catch(err => {
 			res.status(400).send("unable to save to database")
