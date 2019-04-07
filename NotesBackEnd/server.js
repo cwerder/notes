@@ -28,7 +28,6 @@ mongoose.connect(conn, { useNewUrlParser: true }, (err, database) => {
 	if (err) {
 		console.log('close connection')
 	}
-	db = database;
 	
 	app.listen(8080, () => {
 		console.log('Server started. Connection to database established!')
