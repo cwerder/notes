@@ -9,8 +9,7 @@ const conn = "mongodb+srv://note:note@cluster0-lwsh5.mongodb.net/test?retryWrite
 
 const notesSchema = new mongoose.Schema({
 	subject: String,
-	createdAt: {type: Date, default: Date.now},
-	updatedAt: {type: Date, default: Date.now},
+	date: {type: Date, default: Date.now},
 	message: String
 });
 

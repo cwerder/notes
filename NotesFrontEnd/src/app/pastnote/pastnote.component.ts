@@ -9,13 +9,18 @@ import { NoteService } from '../services/Note.service';
 
 export class PastNoteComponent implements OnInit { 
 
-    // pastNotes: NoteService;
-    constructor(private pastNotes: NoteService) { }
+    notes: string[];
+    constructor(private noteService: NoteService) { }
 
     ngOnInit() {
-        console.log('this is ' + this);
-        this.pastNotes.getNotes().subscribe(result => {
-            console.log(result);
+        this.noteService.getNotes().subscribe(result => {
+            this.notes = Object.keys(result).map(key => result[key]);
+            console.log(this.notes);
+            console.log(this.notes.length);
         })
     }
+
+    // deleteNote() {
+    //     this.noteService
+    // }
 }
