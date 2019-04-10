@@ -2,5 +2,5 @@
     <div>Subject: {{note.subject}}</div>
     <div>Date: {{note.date | date}}</div>
     <div>Message: {{note.message}}</div>
-    <div class="x">X</div>
+    <button class="x" (click)="deleteNote(note._id)">X</button>
 </div>

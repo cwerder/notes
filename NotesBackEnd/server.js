@@ -31,6 +31,9 @@ mongoose.connect(conn, { useNewUrlParser: true }, (err, database) => {
 	app.listen(8080, () => {
 		console.log('Server started. Connection to database established!')
 	})
+	// var myNote = new Note({"subject": "hello", "message": "world"})
+	// database.collection("notes").deleteOne(myNote);
+	// console.log("deletion successful")
 })
 
 app.get('/notes/PastNotes', async function(req, res) {
@@ -53,3 +56,10 @@ app.post("/notes/PastNotes", (req, res) => {
 			res.status(400).send("unable to save to database")
 		});
 });
+
+app.delete("/notes/PastNotes/:id", (req, res) => {// /:id is parsed as a variable placeholder name
+	Note.findByIdAndDelete(req.params.id, (err, result) => {
+		console.log(result + " was successfully deleted");
+		res.send(result);
+	});
+})

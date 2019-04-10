@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NoteService } from '../services/Note.service';
+import { NoteInterface } from '../NoteInterface';
 
 @Component({
     selector: "pastnote",
@@ -9,10 +10,15 @@ import { NoteService } from '../services/Note.service';
 
 export class PastNoteComponent implements OnInit { 
 
-    notes: string[];
+    // notes: string[];
+    notes: NoteInterface[];
     constructor(private noteService: NoteService) { }
 
     ngOnInit() {
+        this.getNotes();
+    }
+
+    getNotes() {
         this.noteService.getNotes().subscribe(result => {
             this.notes = Object.keys(result).map(key => result[key]);
             console.log(this.notes);
@@ -20,7 +26,11 @@ export class PastNoteComponent implements OnInit {
         })
     }
 
-    // deleteNote() {
-    //     this.noteService
-    // }
+    deleteNote(id: string) {
+        console.log(id)
+        this.noteService.deleteNote(id).subscribe(res => {
+            console.log(res);
+            this.getNotes();
+        });
+    }
 }
