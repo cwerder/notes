@@ -43,8 +43,9 @@ app.get('/notes/PastNotes', async function(req, res) {
 	})
 })
 
-app.post("/notes/PastNotes", (req, res) => {
-	console.log(req.body)
+app.post("/notes/NewNote", (req, res) => {
+	console.log('in server')
+	console.log(req.body);
 	var myData = new Note(req.body);
 	console.log(myData)
 	myData.save()
@@ -52,7 +53,7 @@ app.post("/notes/PastNotes", (req, res) => {
 			console.log('item ' + item)
 			res.send(item);
 		})
-		.catch(err => {
+		.catch(() => {
 			res.status(400).send("unable to save to database")
 		});
 });
