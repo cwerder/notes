@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { NoteService } from '../services/Note.service';
@@ -15,6 +15,8 @@ export class NewNoteComponent {
     notes: NoteInterface[];
 
     public message: string;
+
+    @Input() public newNote: FormGroup;
     
     constructor(private noteService: NoteService) { }
 

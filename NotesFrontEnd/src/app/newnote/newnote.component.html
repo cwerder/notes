@@ -1,5 +1,5 @@
 <div style="padding-top: 1em;">
-    <form #newNote="ngForm" (ngSubmit)="submitNote(newNote.form);">
+    <form #newNote="ngForm" (ngSubmit)="submitNote(newNote.form); newNote.resetForm()">
         <input 
             ngModel 
             #subjectField="ngModel" 
@@ -7,7 +7,8 @@
             name="subject"
             required
             placeholder="Enter Subject"
-            class="form-control">
+            class="form-control"
+            value="asfa">
         <textarea 
             [(ngModel)]="messageField"
             type="text"
@@ -23,4 +24,5 @@
             Submit
         </button>
     </form>
+    {{newNote.value.message}}
 </div>

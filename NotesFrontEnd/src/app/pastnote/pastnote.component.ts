@@ -11,6 +11,8 @@ import { NoteInterface } from '../NoteInterface';
 export class PastNoteComponent implements OnInit { 
 
     @Input() notes: NoteInterface[];
+    selectedNote: NoteInterface;
+
     constructor(private noteService: NoteService) { }
 
     ngOnInit() {
@@ -22,6 +24,10 @@ export class PastNoteComponent implements OnInit {
             this.notes = Object.keys(result).map(key => result[key]);
             console.log(this.notes);
         })
+    }
+
+    modifyNote(note: NoteInterface) {
+        this.selectedNote = note;
     }
 
     deleteNote(id: string) {
