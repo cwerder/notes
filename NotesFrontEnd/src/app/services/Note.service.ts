@@ -1,22 +1,22 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 import { NoteInterface } from './../NoteInterface';
 
 @Injectable()
-
 export class NoteService {
-    // subject: string;
-    // date: Date;
-    // message: string;
     noteModel: NoteInterface;
-    noteSelected: NoteInterface;
+
+    private options = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
 
     constructor(private http: HttpClient) { }
 
-    getNotes():Observable<Object> {
+    getNotes() {
         return this.http.get('http://localhost:8080/Notes/PastNotes');
+    }
+
+    addNote(note: NoteInterface) {
+        return this.http.post('http://localhost:8080/Notes/NewNote', JSON.stringify(note), this.options);
     }
 
     deleteNote(id: string) {

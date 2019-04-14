@@ -1,6 +1,2 @@
-<!-- <mat-sidenav-container class="example-container">
-    <mat-sidenav mode="side" position="start" opened id="sidenav">Note History</mat-sidenav>
-    <mat-sidenav-content id="main">New Note</mat-sidenav-content>
-</mat-sidenav-container> -->
-<sidenav></sidenav>
-<main></main>
+<sidenav [notesSideNav]="notesList"></sidenav>
+<main (mainNotes)="notesListFromMain($event)"></main>

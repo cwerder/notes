@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'main',
@@ -7,5 +7,10 @@ import { Component } from '@angular/core';
 })
 
 export class MainComponent {
-
+    
+    @Output() mainNotes = new EventEmitter<any>();
+    
+    public notesPass(notesList) {
+        this.mainNotes.emit(notesList);
+    }
 }

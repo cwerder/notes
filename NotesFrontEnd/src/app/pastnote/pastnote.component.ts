@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NoteService } from '../services/Note.service';
 import { NoteInterface } from '../NoteInterface';
 
@@ -10,8 +10,7 @@ import { NoteInterface } from '../NoteInterface';
 
 export class PastNoteComponent implements OnInit { 
 
-    // notes: string[];
-    notes: NoteInterface[];
+    @Input() notes: NoteInterface[];
     constructor(private noteService: NoteService) { }
 
     ngOnInit() {
@@ -22,7 +21,6 @@ export class PastNoteComponent implements OnInit {
         this.noteService.getNotes().subscribe(result => {
             this.notes = Object.keys(result).map(key => result[key]);
             console.log(this.notes);
-            console.log(this.notes.length);
         })
     }
 

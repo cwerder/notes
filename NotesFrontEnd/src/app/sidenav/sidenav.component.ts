@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { NoteInterface } from './../NoteInterface';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'sidenav',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
 })
 
 export class SideNavComponent {
-
+    @Input() notesSideNav: NoteInterface[];
 }

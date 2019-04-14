@@ -1,9 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatSliderModule} from '@angular/material/slider';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { SideNavComponent } from './sidenav/sidenav.component';
@@ -26,11 +24,9 @@ import { NoteService } from './services/Note.service';
   ],
   imports: [
     BrowserModule,
-    MatSidenavModule,
-    MatCheckboxModule,
-    MatSliderModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [NoteService],
   bootstrap: [AppComponent]
