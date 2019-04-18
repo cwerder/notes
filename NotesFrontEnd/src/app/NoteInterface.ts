@@ -1,5 +1,7 @@
 export interface NoteInterface {
     subject: string;
-    date: Date;
+    // date: Date;
+    createdOn: Date;
+    updatedOn: Date;
     message: string;
 }

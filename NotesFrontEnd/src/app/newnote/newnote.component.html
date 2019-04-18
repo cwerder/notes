@@ -8,14 +8,16 @@
             required
             placeholder="Enter Subject"
             class="form-control"
-            value="asfa">
+            [ngModel]="chosenNote?.subject">
         <textarea 
-            [(ngModel)]="messageField"
+            ngModel
+            #messageField="ngModel"
             type="text"
             name="message"
             required
             placeholder="message"
-            class="form-control">
+            class="form-control"
+            [ngModel]="chosenNote?.message">
         </textarea>
         <button 
             class="btn btn-primary" 
@@ -24,5 +26,10 @@
             Submit
         </button>
     </form>
-    {{newNote.value.message}}
+</div>
+<button (click)="clicker()">button</button>
+<div *ngIf="chosenNote != null">{{chosenNote.subject}}
+    {{chosenNote.message}}
+    {{krillin.a}}
+    {{krillin | json}}
 </div>

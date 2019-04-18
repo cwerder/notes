@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { NoteService } from '../services/Note.service';
@@ -16,7 +16,8 @@ export class NewNoteComponent {
 
     public message: string;
 
-    @Input() public newNote: FormGroup;
+    @Input() public chosenNote: NoteInterface;
+    public krillin = {a: '1', b: '2'};
     
     constructor(private noteService: NoteService) { }
 
@@ -30,5 +31,10 @@ export class NewNoteComponent {
                 this.notePosted.emit(this.notes);
             });
         });
+    }
+
+    clicker() {
+        console.log(this.chosenNote);
+        console.log(this.chosenNote.subject);
     }
 }

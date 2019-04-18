@@ -9,8 +9,9 @@ const conn = "mongodb+srv://note:note@cluster0-lwsh5.mongodb.net/test?retryWrite
 
 const notesSchema = new mongoose.Schema({
 	subject: String,
-	date: {type: Date, default: Date.now},
 	message: String
+}, {
+	timestamps: { createdAt: 'createdOn', updatedAt: 'updatedOn' }
 });
 
 var corsOptions = {

@@ -19,6 +19,10 @@ export class NoteService {
         return this.http.post('http://localhost:8080/Notes/NewNote', JSON.stringify(note), this.options);
     }
 
+    changeNote(note: NoteInterface, id: string) {
+        return this.http.put(`http://localhost:8080/Notes/PastNotes/${id}`, JSON.stringify(note));
+    }
+
     deleteNote(id: string) {
         return this.http.delete(`http://localhost:8080/Notes/PastNotes/${id}`)
     }

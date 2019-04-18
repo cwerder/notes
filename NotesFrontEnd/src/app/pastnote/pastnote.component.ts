@@ -26,8 +26,16 @@ export class PastNoteComponent implements OnInit {
         })
     }
 
-    modifyNote(note: NoteInterface) {
+    modifyNote(note: NoteInterface, id: string) {
         this.selectedNote = note;
+        console.log("this is your id "+ id)
+
+        // the logic below should only happen when you hit submit for your changes
+        this.noteService.changeNote(this.selectedNote, id).subscribe(res => {
+            console.log(res);
+            // this.selectedNote = null;
+            // this.getNotes();
+        });
     }
 
     deleteNote(id: string) {
