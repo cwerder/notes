@@ -19,17 +19,19 @@
             class="form-control"
             [ngModel]="chosenNote?.message">
         </textarea>
-        <button 
+        <button
+            *ngIf="!chosenNote"
             class="btn btn-primary" 
             style="display: block;" 
             [disabled]="!newNote.valid">
             Submit
         </button>
+        <button
+            *ngIf="chosenNote"
+            class="btn btn-primary" 
+            style="display: block;" 
+            [disabled]="!newNote.valid">
+            Modify
+        </button>
     </form>
-</div>
-<button (click)="clicker()">button</button>
-<div *ngIf="chosenNote != null">{{chosenNote.subject}}
-    {{chosenNote.message}}
-    {{krillin.a}}
-    {{krillin | json}}
 </div>

@@ -20,7 +20,7 @@ export class NoteService {
     }
 
     changeNote(note: NoteInterface, id: string) {
-        return this.http.put(`http://localhost:8080/Notes/PastNotes/${id}`, JSON.stringify(note));
+        return this.http.put(`http://localhost:8080/Notes/PastNotes/${id}`, JSON.stringify(note), this.options);
     }
 
     deleteNote(id: string) {

@@ -1,5 +1,5 @@
 <div *ngFor="let note of notes">
-    <div *ngIf="note!= selectedNote; else noteSelected;" class="card">
+    <div *ngIf="note != selectedNote; else noteSelected;" class="card">
         <div>Subject: {{note.subject}}</div>
         <div>Created: {{note.createdOn | date}}</div>
         <div *ngIf="note.createdOn !== note.updatedOn">Updated: {{note.updatedOn | date}}</div>
@@ -10,6 +10,6 @@
         </div>
     </div>
     <ng-template #noteSelected>
-        <newnote [chosenNote]="selectedNote"></newnote>
+        <newnote [chosenNote]="selectedNote" (noteModified)="noteModifiedFormSubmitted()"></newnote>
     </ng-template>
 </div>

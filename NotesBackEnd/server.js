@@ -42,7 +42,6 @@ app.get('/notes/PastNotes', async function(req, res) {
 })
 
 app.post("/notes/NewNote", (req, res) => {
-	console.log('in server')
 	console.log(req.body);
 	var myData = new Note(req.body);
 	console.log(myData)
@@ -64,7 +63,7 @@ app.put("/notes/PastNotes/:id", (req, res) => {
 })
 
 app.delete("/notes/PastNotes/:id", (req, res) => {// /:id is parsed as a variable placeholder name
-	Note.findByIdAndDelete(req.params.id, {new: true}, (err, result) => {
+	Note.findByIdAndDelete(req.params.id, (err, result) => {
 		console.log(result + " was successfully deleted");
 		res.send(result);
 	});
