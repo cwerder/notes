@@ -1,5 +1,15 @@
-<div class="card">
-    <div>Subject: </div>
-    <div>Date: </div>
-    <div>Message: </div>
+<div *ngFor="let note of notes">
+    <div *ngIf="note != selectedNote; else noteSelected;" class="card">
+        <div>Subject: {{note.subject}}</div>
+        <div>Created: {{note.createdOn | date}}</div>
+        <div *ngIf="note.createdOn !== note.updatedOn">Updated: {{note.updatedOn | date}}</div>
+        <div>Message: {{note.message}}</div>
+        <div class="button-container">
+                <button class="m" (click)="modifyNote(note, note._id)">M</button>
+                <button class="x" (click)="deleteNote(note._id)">X</button>
+        </div>
+    </div>
+    <ng-template #noteSelected>
+        <newnote [chosenNote]="selectedNote" (noteModified)="noteModifiedFormSubmitted()"></newnote>
+    </ng-template>
 </div>

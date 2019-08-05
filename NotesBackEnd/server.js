@@ -9,9 +9,9 @@ const conn = "mongodb+srv://note:note@cluster0-lwsh5.mongodb.net/test?retryWrite
 
 const notesSchema = new mongoose.Schema({
 	subject: String,
-	createdAt: {type: Date, default: Date.now},
-	updatedAt: {type: Date, default: Date.now},
 	message: String
+}, {
+	timestamps: { createdAt: 'createdOn', updatedAt: 'updatedOn' }
 });
 
 var corsOptions = {
@@ -41,8 +41,8 @@ app.get('/notes/PastNotes', async function(req, res) {
 	})
 })
 
-app.post("/notes/PastNotes", (req, res) => {
-	console.log(req.body)
+app.post("/notes/NewNote", (req, res) => {
+	console.log(req.body);
 	var myData = new Note(req.body);
 	console.log(myData)
 	myData.save()
@@ -50,7 +50,21 @@ app.post("/notes/PastNotes", (req, res) => {
 			console.log('item ' + item)
 			res.send(item);
 		})
-		.catch(err => {
+		.catch(() => {
 			res.status(400).send("unable to save to database")
 		});
 });
+
+app.put("/notes/PastNotes/:id", (req, res) => {
+	Note.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, result) => {
+		console.log(result + " was successfully updated");
+		res.send(result);
+	})
+})
+
+app.delete("/notes/PastNotes/:id", (req, res) => {// /:id is parsed as a variable placeholder name
+	Note.findByIdAndDelete(req.params.id, (err, result) => {
+		console.log(result + " was successfully deleted");
+		res.send(result);
+	});
+})

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NoteInterface } from './NoteInterface';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Notes';
+  notesList: NoteInterface[];
+
+  notesListFromMain(listFromMain) {
+    this.notesList = listFromMain;
+  }
 }

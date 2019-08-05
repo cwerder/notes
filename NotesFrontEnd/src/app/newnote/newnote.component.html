@@ -1,6 +1,37 @@
 <div style="padding-top: 1em;">
-    <form>
-        <textarea placeholder="Enter a new message:"></textarea>
-        <button style="display: block;">Submit</button>
+    <form #newNote="ngForm" (ngSubmit)="submitNote(newNote.form); newNote.resetForm()">
+        <input 
+            ngModel 
+            #subjectField="ngModel" 
+            type="text" 
+            name="subject"
+            required
+            placeholder="Enter Subject"
+            class="form-control"
+            [ngModel]="chosenNote?.subject">
+        <textarea 
+            ngModel
+            #messageField="ngModel"
+            type="text"
+            name="message"
+            required
+            placeholder="message"
+            class="form-control"
+            [ngModel]="chosenNote?.message">
+        </textarea>
+        <button
+            *ngIf="!chosenNote"
+            class="btn btn-primary" 
+            style="display: block;" 
+            [disabled]="!newNote.valid">
+            Submit
+        </button>
+        <button
+            *ngIf="chosenNote"
+            class="btn btn-primary" 
+            style="display: block;" 
+            [disabled]="!newNote.valid">
+            Modify
+        </button>
     </form>
 </div>
