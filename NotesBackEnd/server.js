@@ -1,11 +1,13 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const dotenv = require('dotenv');
 
 const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose');
 mongoose.Promise = Promise;
 const conn = "mongodb+srv://note:note@cluster0-lwsh5.mongodb.net/test?retryWrites=true";
+dotenv.config();
 
 const notesSchema = new mongoose.Schema({
 	subject: String,
@@ -30,7 +32,8 @@ mongoose.connect(conn, { useNewUrlParser: true }, (err, database) => {
 	}
 	
 	app.listen(8080, () => {
-		console.log('Server started. Connection to database established!')
+		console.log('Server started. Connection to database established!');
+		console.log(`Server listening on port ${process.env.PORT}`)
 	})
 })
 
